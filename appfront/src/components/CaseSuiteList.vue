@@ -114,21 +114,23 @@
             <div class="dxy-dividing-line"
                  style="margin-top: 0px; margin-bottom: 24px;"></div>
             <el-button class="small" type="warning" size="small"
-                       @click="dialogVisible = true">批量删除
+                       @click="removeBatch" :loading=delete_status>
+              批量删除
             </el-button>
-            <el-dialog
-              title="提示"
-              :visible.sync="dialogVisible"
-              width="30%"
-              :modal-append-to-body='false'>
-              <span>确定要删除该数据吗？</span>
-              <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="removeBatch()">确 定</el-button>
-  </span>
+            <!--<el-dialog-->
+              <!--title="提示"-->
+              <!--:visible.sync="dialogVisible"-->
+              <!--width="30%"-->
+              <!--:modal-append-to-body='false'>-->
+              <!--<span>确定要删除该数据吗？</span>-->
+              <!--<span slot="footer" class="dialog-footer">-->
+    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+    <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
+  <!--</span>-->
 
-            </el-dialog>
-            <el-button class="small" size="small" @click="runCases()">批量运行
+            <!--</el-dialog>-->
+            <el-button class="small" size="small" @click="runCases()"
+                       :loading=runs_status>批量运行
             </el-button>
 
 
@@ -162,7 +164,8 @@
                   <span style="color: #71c7ad;">删除</span>
                 </el-button>
                 <el-button type="button" @click="run(scope.row.suite_id)"
-                           style="border: transparent;background-color: transparent"><span
+                           style="border: transparent;background-color: transparent"
+                           :loading=run_status><span
                   style="color: #71c7ad;">运行</span></el-button>
                 <el-dialog
                   title="提示"
@@ -223,7 +226,10 @@
         list1: [],
         multipleSelection: [],
         list2: [],
-        multipleSelections: []
+        multipleSelections: [],
+        run_status: false,
+        runs_status: false,
+        delete_status: false
 
       };
 
@@ -355,11 +361,12 @@
         })
       },
       run: function (row) {
+        this.run_status = true;
         this.$axios.post('run/', {suite_id: row}).then((res) => {
-          if (res.data.results === '') {
-            this.loading = true
+          if (res.data.results !== '') {
+            this.run_status = false
           }
-          console.log(res.status);
+          console.log(res.data.results);
           this.getlist()
 
         }).catch((error) => {
@@ -374,26 +381,34 @@
         });
       },
       removeBatch() {
+        this.delete_status = true;
         this.multipleSelection.forEach(i => {
           this.list1.push(i.suite_id)
         });
         this.$axios.put('delete_case_suites/', {"ids": this.list1}).then((res) => {
+          if (res.data !== '') {
+            this.delete_status = false
+          }
           console.log(res);
           this.deleteOpen();
           this.getlist();
-          this.list1 = []
+          this.list1.splice(0, this.list1.length)
         }).catch((err) => {
           console.log(err)
         })
       },
-      runCases(rows) {
+      runCases() {
+        this.runs_status = true;
         this.multipleSelection.forEach(i => {
           this.list1.push(i.suite_id)
         });
         this.$axios.post('run_case_suites/', {"ids": this.list1}).then((res) => {
-          this.list1 = []
+          if (res.data.results !== '') {
+            this.runs_status = false
+          }
           console.log(res);
           this.getlist();
+          this.list1.splice(0, this.list1.length);
 
         }).catch((err) => {
           console.log(err)

@@ -8,17 +8,24 @@
             <template slot="title"><i class="el-icon-message"></i>导航一</template>
             <el-menu-item-group>
               <el-menu-item index="1-1">
-                <router-link to="/url_list/" style="text-decoration: none;"><span style="color: #303133">域名</span>
+                <router-link to="/url_list/" style="text-decoration: none;">
+                  <span style="color: #303133">域名</span>
                 </router-link>
               </el-menu-item>
               <el-menu-item index="1-2">
-                <router-link to="/case_list/" style="text-decoration: none;">测试用例</router-link>
+                <router-link to="/case_list/" style="text-decoration: none;">
+                  测试用例
+                </router-link>
               </el-menu-item>
               <el-menu-item index="1-3">
-                <router-link to="/case_suite_list/" style="text-decoration: none;">测试套件</router-link>
+                <router-link to="/case_suite_list/"
+                             style="text-decoration: none;">测试套件
+                </router-link>
               </el-menu-item>
               <el-menu-item index="1-4">
-                <router-link to="/user_list/" style="text-decoration: none;">用户管理</router-link>
+                <router-link to="/user_list/" style="text-decoration: none;">
+                  用户管理
+                </router-link>
               </el-menu-item>
               <el-menu-item index="1-5">
               </el-menu-item>
@@ -52,17 +59,24 @@
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
-                <router-link to="/url_list/" style="text-decoration: none;"><span style="color: black">域名</span>
+                <router-link to="/url_list/" style="text-decoration: none;">
+                  <span style="color: black">域名</span>
                 </router-link>
               </el-dropdown-item>
               <el-dropdown-item>
-                <router-link to="/case_list/" style="text-decoration: none;">测试用例</router-link>
+                <router-link to="/case_list/" style="text-decoration: none;">
+                  测试用例
+                </router-link>
               </el-dropdown-item>
               <el-dropdown-item>
-                <router-link to="/case_suite_list/" style="text-decoration: none;">测试套件</router-link>
+                <router-link to="/case_suite_list/"
+                             style="text-decoration: none;">测试套件
+                </router-link>
               </el-dropdown-item>
               <el-dropdown-item>
-                <router-link to="/user_list/" style="text-decoration: none;">用户管理</router-link>
+                <router-link to="/user_list/" style="text-decoration: none;">
+                  用户管理
+                </router-link>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -80,31 +94,40 @@
                 新增
               </el-button>
             </router-link>
-            <label for="project_name" style="padding-left: 680px;padding-right: 5px">用户搜索</label>
+            <label for="project_name"
+                   style="padding-left: 680px;padding-right: 5px">用户搜索</label>
             <el-input name="search_username" placeholder="用户名/邮箱"
-                      v-model="username" style="width: 200px;padding-right: 36px" @change="search"></el-input>
+                      v-model="username"
+                      style="width: 200px;padding-right: 36px"
+                      @change="search"></el-input>
             <!--<el-button type="button" value="搜索" icon="el-icon-search" @click="search">搜索</el-button>-->
             <el-button icon="el-icon-search" @click="search">搜索</el-button>
             <br>
             <br>
-            <div class="dxy-dividing-line" style="margin-top: 0px; margin-bottom: 24px;"></div>
-            <el-button class="small" type="warning" size="small" @click="dialogVisible = true">批量删除
+            <div class="dxy-dividing-line"
+                 style="margin-top: 0px; margin-bottom: 24px;"></div>
+            <el-button class="small" type="warning" size="small"
+                       @click="removeBatch">批量删除
             </el-button>
-            <el-dialog
-                  title="提示"
-                  :visible.sync="dialogVisible"
-                  width="30%"
-                  :modal-append-to-body='false'>
-                  <span>确定要删除该数据吗？</span>
-                  <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="removeBatch()">确 定</el-button>
-  </span>
-                </el-dialog>
+            <!--<el-dialog-->
+            <!--title="提示"-->
+            <!--:visible.sync="dialogVisible"-->
+            <!--width="30%"-->
+            <!--:modal-append-to-body='false'>-->
+            <!--<span>确定要删除该数据吗？</span>-->
+            <!--<span slot="footer" class="dialog-footer">-->
+            <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+            <!--<el-button type="primary" @click="removeBatch(sel)">确 定</el-button>-->
+            <!--</span>-->
+            <!--</el-dialog>-->
           </el-form>
-          <el-table :data="sites.slice((currentPage-1)*pageSize,currentPage*pageSize)" style="margin-top: 30px" stripe
-                    border @selection-change="handleSelectionChange" :header-cell-style="getRowClass">
-            <el-table-column type="selection" width="55" class="selection"></el-table-column>
+          <el-table
+            :data="sites.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+            style="margin-top: 30px" stripe
+            border @selection-change="handleSelectionChange"
+            :header-cell-style="getRowClass">
+            <el-table-column type="selection" width="55"
+                             class="selection"></el-table-column>
             <el-table-column prop="user_id" label="编号" width="140" fixed>
             </el-table-column>
             <el-table-column prop="username" label="用户名" width="140" fixed>
@@ -133,7 +156,8 @@
                   <span>确定要删除该数据吗？</span>
                   <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="getDelete(scope.row.user_id)">确 定</el-button>
+    <el-button type="primary"
+               @click="getDelete(scope.row.user_id)">确 定</el-button>
   </span>
                 </el-dialog>
               </template>
@@ -141,6 +165,7 @@
 
             </el-table-column>
           </el-table>
+
           <div class="block" style="margin-top: 30px;margin-left: 750px">
             <!--<el-pagination-->
             <!--:page-sizes="[5, 10, 20, 40]"-->
@@ -182,7 +207,8 @@
         pageSize: 10,
         multipleSelection: [],
         list1: [],
-        user_id: ''
+        user_id: '',
+        delete_status: false
 
 
       }
@@ -317,13 +343,17 @@
         });
       },
       removeBatch() {
+        this.delete_status = true;
         this.multipleSelection.forEach(i => {
           this.list1.push(i.user_id)
         });
         this.$axios.put('delete_users/', {"ids": this.list1}).then((res) => {
-          console.log(res);
-          this.deleteOpen();
+          if (res.data !== '') {
+            this.delete_status = false
+          }
+          // this.deleteOpen();
           this.getlist();
+          // this.list1.splice(0, this.list1.length)
         }).catch((err) => {
           console.log(err)
         })

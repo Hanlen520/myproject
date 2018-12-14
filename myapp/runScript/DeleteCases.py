@@ -5,7 +5,7 @@ from myapp.models import Case
 from rest_framework.views import APIView
 import logging
 from rest_framework.response import Response
-from rest_framework.response import Response
+
 
 # 批量删除测试用例
 class DeleteCases(APIView):
@@ -14,8 +14,6 @@ class DeleteCases(APIView):
 
     def put(self, request):
         return_message = {'code': 200, 'message': '成功'}
-        error_message = {"code": 0, 'message': '用例已被删除'}
-        list1 = []
 
         data = request.data
         for i in data["ids"]:

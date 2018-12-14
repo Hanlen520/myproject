@@ -113,19 +113,19 @@
             <div class="dxy-dividing-line"
                  style="margin-top: 0px; margin-bottom: 24px;"></div>
             <el-button class="small" type="warning" size="small"
-                       @click="dialogVisible = true">批量删除
+                       @click="removeBatch" :loading=delete_status>批量删除
             </el-button>
-            <el-dialog
-              title="提示"
-              :visible.sync="dialogVisible"
-              width="30%"
-              :modal-append-to-body='false'>
-              <span>确定要删除该数据吗？</span>
-              <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="removeBatch()">确 定</el-button>
-  </span>
-            </el-dialog>
+            <!--<el-dialog-->
+              <!--title="提示"-->
+              <!--:visible.sync="dialogVisible"-->
+              <!--width="30%"-->
+              <!--:modal-append-to-body='false'>-->
+              <!--<span>确定要删除该数据吗？</span>-->
+              <!--<span slot="footer" class="dialog-footer">-->
+    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+    <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
+  <!--</span>-->
+            <!--</el-dialog>-->
           </el-form>
 
           <el-table :data="sites" style="margin-top: 30px" stripe border
@@ -232,7 +232,8 @@
         pageSize: 10,
         multipleSelection: [],
         list1: [],
-        yz: false
+        yz: false,
+        delete_status: false
 
       }
     },
@@ -370,12 +371,17 @@
         });
       },
       removeBatch() {
+        this.delete_status = true;
         this.multipleSelection.forEach(i => {
           this.list1.push(i.case_id)
         });
         this.$axios.put('delete_cases/', {"ids": this.list1}).then((res) => {
+          if (res.data !== '') {
+            this.delete_status = false
+          }
           console.log(res);
           this.getlist1()
+          this.list1.splice(0, this.list1.length)
         }).catch((err) => {
           console.log(err)
         })

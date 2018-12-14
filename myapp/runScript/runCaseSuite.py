@@ -47,15 +47,15 @@ class RunCaseSuites(APIView):
                                     case_name=data.case.case_name).update(
                     result=t.json())
 
-                return Response(t.json(), status=status.HTTP_200_OK,
-                                headers=headers)
+                # return Response(t.json(), status=status.HTTP_200_OK,
+                #                 headers=headers)
                 # return Response(t)
             else:
                 Case_suite.objects.filter(
                     suite_id=i).update(
                     status='失败')
-                return Response(t.json(), status=t.status_code,
-                                headers=headers)
+                # return Response(t.json(), status=t.status_code,
+                #                 headers=headers)
         except Exception as e:
             return Response(e)
 
@@ -93,15 +93,15 @@ class RunCaseSuites(APIView):
                 Case.objects.filter(isdelete=False,
                                     case_name=data.case.case_name).update(
                     result=t.json())
-                return Response(t.json(),
-                                status=status.HTTP_201_CREATED,
-                                headers=headers)
+                # return Response(t.json(),
+                #                 status=status.HTTP_201_CREATED,
+                #                 headers=headers)
             else:
                 Case_suite.objects.filter(
                     suite_id=i).update(
                     status='失败')
-                return Response(t.json(), status=t.status_code,
-                                headers=headers)
+                # return Response(t.json(), status=t.status_code,
+                #                 headers=headers)
         except Exception as e:
             return Response(e)
 
@@ -138,14 +138,14 @@ class RunCaseSuites(APIView):
                 Case.objects.filter(isdelete=False,
                                     case_name=data.case.case_name).update(
                     result=t.json())
-                return Response(t.json(), status=status.HTTP_200_OK,
-                                headers=headers)
+                # return Response(t.json(), status=status.HTTP_200_OK,
+                #                 headers=headers)
             else:
                 Case_suite.objects.filter(
                     suite_id=i).update(
                     status='失败')
-                return Response(t.json(), status=t.status_code,
-                                headers=headers)
+                # return Response(t.json(), status=t.status_code,
+                #                 headers=headers)
         except Exception as e:
             return Response(e)
 
@@ -177,15 +177,15 @@ class RunCaseSuites(APIView):
                 Case_suite.objects.filter(
                     suite_id=i).update(
                     status='成功')
-                return Response(t.json(),
-                                status=status.HTTP_204_NO_CONTENT,
-                                headers=headers)
+                # return Response(t.json(),
+                #                 status=status.HTTP_204_NO_CONTENT,
+                #                 headers=headers)
             else:
                 Case_suite.objects.filter(
                     suite_id=i).update(
                     status='失败')
-                return Response(t.json(), status=t.status_code,
-                                headers=headers)
+                # return Response(t.json(), status=t.status_code,
+                #                 headers=headers)
         except Exception as e:
             return Response(e)
 
@@ -196,6 +196,7 @@ class RunCaseSuites(APIView):
         # 获取到的id列表
         global i
         for i in serializers["ids"]:
+            print(i)
             data = Case_suite.objects.get(suite_id=i)
             # 查询测试套件下对应的测试用例信息
             data1 = Case.objects.filter(isdelete=False).get(
@@ -225,20 +226,20 @@ class RunCaseSuites(APIView):
                 logging.debug('不调用其他接口返回数据')
                 if data1.case_bz == "":
                     if request_type == 'get':
-                        results = self.get_case()
-                        return Response(results.data)
+                        self.get_case()
+                        # return Response(results.data)
                     # post请求处理
                     if request_type == 'post':
-                        results = self.post_case()
-                        return Response(results.data)
+                        self.post_case()
+                        # return Response(results.data)
                     # put请求处理
                     if request_type == 'put':
-                        results = self.put_case()
-                        return Response(results.data)
+                        self.put_case()
+                        # return Response(results.data)
                     # delete请求处理
                     if request_type == 'delete':
-                        results = self.delete_case()
-                        return Response(results.data)
+                        self.delete_case()
+                        # return Response(results.data)
                 if data1.case_bz != "":
                     # 遍历要返回数据的列表id
                     for key in eval(data1.case_bz):
@@ -280,16 +281,16 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(isdelete=False,
                                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'post':
                                     t = requests.post(new_url,
                                                       json=eval(new_data),
@@ -302,16 +303,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'get':
                                     t = requests.get(new_url,
                                                      json=new_data,
@@ -324,16 +325,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
 
                                 if request_type == 'delete':
                                     t = requests.delete(new_url,
@@ -346,16 +347,16 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(
                                             isdelete=False,
                                             case_name=data.case.case_name).update()
-                                        return Response(
-                                            status=status.HTTP_204_NO_CONTENT,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=status.HTTP_204_NO_CONTENT,
+                                        #     headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(
-                                            status=t.status_code,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=t.status_code,
+                                        #     headers=headers)
                             elif t1 and len(body_res) == 0:
                                 t1 = t1.group(0)
                                 t2 = t1.replace('[', '')
@@ -377,16 +378,16 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(isdelete=False,
                                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'post':
                                     t = requests.post(new_url,
                                                       json=eval(request_data),
@@ -399,16 +400,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'get':
                                     t = requests.get(new_url,
                                                      json=request_data,
@@ -421,16 +422,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
 
                                 if request_type == 'delete':
                                     t = requests.delete(new_url,
@@ -443,16 +444,16 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(
                                             isdelete=False,
                                             case_name=data.case.case_name).update()
-                                        return Response(
-                                            status=status.HTTP_204_NO_CONTENT,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=status.HTTP_204_NO_CONTENT,
+                                        #     headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(
-                                            status=t.status_code,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=t.status_code,
+                                        #     headers=headers)
                             if not t1 and len(body_res) > 0:
                                 # 将【】替换为空
                                 new_data = request_data
@@ -477,16 +478,16 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(isdelete=False,
                                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'post':
                                     t = requests.post(url,
                                                       json=eval(new_data),
@@ -499,16 +500,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
                                 if request_type == 'get':
                                     t = requests.get(url,
                                                      json=new_data,
@@ -521,16 +522,16 @@ class RunCaseSuites(APIView):
                                             isdelete=False,
                                             case_name=data.case.case_name).update(
                                             result=t.json())
-                                        return Response(t.json(),
-                                                        status=status.HTTP_200_OK,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=status.HTTP_200_OK,
+                                        #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(t.json(),
-                                                        status=t.status_code,
-                                                        headers=headers)
+                                        # return Response(t.json(),
+                                        #                 status=t.status_code,
+                                        #                 headers=headers)
 
                                 if request_type == 'delete':
                                     t = requests.delete(url,
@@ -543,18 +544,20 @@ class RunCaseSuites(APIView):
                                         Case.objects.filter(
                                             isdelete=False,
                                             case_name=data.case.case_name).update()
-                                        return Response(
-                                            status=status.HTTP_204_NO_CONTENT,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=status.HTTP_204_NO_CONTENT,
+                                        #     headers=headers)
                                     else:
                                         Case_suite.objects.filter(
                                             suite_id=i).update(
                                             status='失败')
-                                        return Response(
-                                            status=t.status_code,
-                                            headers=headers)
+                                        # return Response(
+                                        #     status=t.status_code,
+                                        #     headers=headers)
                         except Exception as e:
                             return Response(e)
 
             except Exception as e:
                 return Response(e)
+        t = {'code': 200, 'message': '成功'}
+        return Response(t)

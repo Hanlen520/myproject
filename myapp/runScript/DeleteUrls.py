@@ -14,11 +14,10 @@ class DeleteUrls(APIView):
     def put(self, request):
 
         data = request.data
+        print(data)
         for i in data["ids"]:
             try:
                 Ym.objects.filter(ym_id=i).update(isdelete=True)
-                return Response("{'code': 200, 'message': '成功'}")
-
             except Exception as e:
                 logging.exception(e)
-                return Response(e)
+        return Response("{'code': 200, 'message': '成功'}")

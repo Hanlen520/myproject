@@ -96,7 +96,8 @@
                    style="padding-left: 680px;padding-right: 5px">项目搜索</label>
             <el-input name="search_project_name" placeholder="项目名称/域名"
                       v-model="project_name" size="medium"
-                      style="width: 200px;padding-right: 36px" @change="search"></el-input>
+                      style="width: 200px;padding-right: 36px"
+                      @change="search"></el-input>
             <el-button type="button" value="搜索" icon="el-icon-search"
                        @click="search">搜索
             </el-button>
@@ -107,19 +108,20 @@
             <div class="dxy-dividing-line"
                  style="margin-top: 0px; margin-bottom: 24px;"></div>
             <el-button class="small" type="warning" size="small"
-                       @click="dialogVisible = true">批量删除
+                       @click="removeBatch(multipleSelection)"
+                       :loading=delete_status>批量删除
             </el-button>
-            <el-dialog
-              title="提示"
-              :visible.sync="dialogVisible"
-              width="30%"
-              :modal-append-to-body='false'>
-              <span>确定要删除该数据吗？</span>
-              <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="removeBatch()">确 定</el-button>
-  </span>
-            </el-dialog>
+            <!--<el-dialog-->
+            <!--title="提示"-->
+            <!--:visible.sync="dialogVisible"-->
+            <!--width="30%"-->
+            <!--:modal-append-to-body='false'>-->
+            <!--<span>确定要删除该数据吗？</span>-->
+            <!--<span slot="footer" class="dialog-footer">-->
+            <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+            <!--<el-button type="primary" @click="removeBatch(val)">确 定</el-button>-->
+            <!--</span>-->
+            <!--</el-dialog>-->
 
           </el-form>
           <el-table
@@ -210,7 +212,8 @@
         multipleSelection: [],
         checklist: [],
         disabled: true,
-        list1: []
+        list1: [],
+        delete_status: false
 
 
       };
@@ -340,16 +343,20 @@
           type: 'success'
         });
       },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
+      handleSelectionChange(multipleSelection) {
+        this.multipleSelection = multipleSelection;
       },
-      removeBatch() {
+      removeBatch(row) {
         this.multipleSelection.forEach(i => {
           this.list1.push(i.ym_id)
         });
         this.$axios.put('delete_urls/', {"ids": this.list1}).then((res) => {
+          if (res.data !== '') {
+            this.delete_status = false
+          }
           console.log(res);
           this.getlist();
+          this.list1.splice(0, this.list1.length)
         }).catch((err) => {
           console.log(err)
         })
