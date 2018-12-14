@@ -5,13 +5,9 @@ from .models import Login, Ym, Case, Case_suite
 from rest_framework import generics, filters, viewsets, mixins
 import requests
 from rest_framework.views import APIView
-from django.contrib.auth.backends import ModelBackend
-from django.db.models import Q
 import logging
 from rest_framework.response import Response
 from rest_framework import status
-import hashlib
-import json
 import re
 
 
@@ -377,85 +373,18 @@ class Quest(APIView):
                 if request_type == 'get':
                     results = self.get_case()
                     return Response(results.data)
-                # t = requests.get(url, json=request_data, headers=headers)
-                # if t.status_code == 200:
-                #     Case_suite.objects.filter(
-                #         suite_id=serializers['suite_id']).update(
-                #         status='成功')
-                #     Case.objects.filter(isdelete=False,
-                #                         case_name=data.case.case_name).update(
-                #         result=t.json())
-                #
-                #     return Response(t.json(), status=status.HTTP_200_OK,
-                #                     headers=headers)
-                # else:
-                #     Case_suite.objects.filter(
-                #         suite_id=serializers['suite_id']).update(
-                #         status='失败')
-                #     return Response(t.json(), status=t.status_code,
-                #                     headers=headers)
                 # post请求处理
                 if request_type == 'post':
                     results = self.post_case()
                     return Response(results.data)
-                    # t = requests.post(url, json=eval(request_data),
-                    #                   headers=headers)
-                    # if t.status_code == 201:
-                    #     Case_suite.objects.filter(
-                    #         suite_id=serializers['suite_id']).update(
-                    #         status='成功')
-                    #     Case.objects.filter(isdelete=False,
-                    #                         case_name=data.case.case_name).update(
-                    #         result=t.json())
-                    #     return Response(t.json(),
-                    #                     status=status.HTTP_201_CREATED,
-                    #                     headers=headers)
-                    # else:
-                    #     Case_suite.objects.filter(
-                    #         suite_id=serializers['suite_id']).update(
-                    #         status='失败')
-                    #     return Response(t.json(), status=t.status_code,
-                    #                     headers=headers)
                 # put请求处理
                 if request_type == 'put':
                     results = self.put_case()
                     return Response(results.data)
-                # t = requests.put(url, json=eval(request_data),
-                #                  headers=headers)
-                # if t.status_code == 200:
-                #     Case_suite.objects.filter(
-                #         suite_id=serializers['suite_id']).update(
-                #         status='成功')
-                #     Case.objects.filter(isdelete=False,
-                #                         case_name=data.case.case_name).update(
-                #         result=t.json())
-                #     return Response(t.json(), status=status.HTTP_200_OK,
-                #                     headers=headers)
-                # else:
-                #     Case_suite.objects.filter(
-                #         suite_id=serializers['suite_id']).update(
-                #         status='失败')
-                #     return Response(t.json(), status=t.status_code,
-                #                     headers=headers)
                 # delete请求处理
                 if request_type == 'delete':
                     results = self.delete_case()
                     return Response(results.data)
-                    # t = requests.delete(url, json=eval(request_data),
-                    #                     headers=headers)
-                    # if t.status_code == 204:
-                    #     Case_suite.objects.filter(
-                    #         suite_id=serializers['suite_id']).update(
-                    #         status='成功')
-                    #     return Response(t.json(),
-                    #                     status=status.HTTP_204_NO_CONTENT,
-                    #                     headers=headers)
-                    # else:
-                    #     Case_suite.objects.filter(
-                    #         suite_id=serializers['suite_id']).update(
-                    #         status='失败')
-                    #     return Response(t.json(), status=t.status_code,
-                    #                     headers=headers)
             if data1.case_bz != "":
                 for i in eval(data1.case_bz):
                     try:
