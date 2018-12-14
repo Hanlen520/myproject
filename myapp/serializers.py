@@ -3,7 +3,6 @@ from rest_framework import serializers
 from .models import Login
 from .models import Ym, Case, Case_suite
 from rest_framework.validators import UniqueValidator
-from rest_framework.views import APIView
 
 
 class Login1(serializers.ModelSerializer):
@@ -99,8 +98,8 @@ class CaseSuites(serializers.ModelSerializer):
     class Meta:
         model = Case_suite
         fields = (
-        'yuming', "case", "project_name", "bz", "suite_name", "headers",
-        "suite_id", "status")
+            'yuming', "case", "project_name", "bz", "suite_name", "headers",
+            "suite_id", "status")
 
 
 class LoginIn(serializers.ModelSerializer):
