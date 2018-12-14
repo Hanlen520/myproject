@@ -5,7 +5,7 @@ from myapp.models import Case
 from rest_framework.views import APIView
 import logging
 from rest_framework.response import Response
-
+from rest_framework.response import Response
 
 # 批量删除测试用例
 class DeleteCases(APIView):
