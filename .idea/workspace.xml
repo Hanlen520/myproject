@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b64338b0-20c5-4b6e-8f95-c2e5bfce0491" name="Default" comment="拆分代码">
+    <list default="true" id="b64338b0-20c5-4b6e-8f95-c2e5bfce0491" name="Default" comment="不提交pyc文件">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appfront/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/appfront/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,10 +35,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/appfront/.gitignore">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="15">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -117,7 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/appfront/src/components/UpdateCaseSuite.vue" />
         <option value="$PROJECT_DIR$/appfront/src/components/update_user.vue" />
         <option value="$PROJECT_DIR$/appfront/src/components/UpdateUser.vue" />
         <option value="$PROJECT_DIR$/appfront/index.html" />
@@ -168,6 +169,7 @@
         <option value="$PROJECT_DIR$/myapp/urls.py" />
         <option value="$PROJECT_DIR$/myapp/views.py" />
         <option value="$PROJECT_DIR$/appfront/.gitignore" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -183,7 +185,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="56" />
+    <option name="y" value="328" />
     <option name="width" value="1440" />
     <option name="height" value="789" />
   </component>
@@ -214,37 +217,6 @@
             <path>
               <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="myproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myproject" type="462c0819:PsiDirectoryNode" />
-              <item name="appfront" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myproject" type="462c0819:PsiDirectoryNode" />
-              <item name="appfront" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myproject" type="462c0819:PsiDirectoryNode" />
-              <item name="appfront" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myproject" type="462c0819:PsiDirectoryNode" />
-              <item name="appfront" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myproject" type="462c0819:PsiDirectoryNode" />
-              <item name="appfront" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="myproject" type="b2602c69:ProjectViewProjectNode" />
@@ -280,6 +252,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/appfront/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -447,7 +420,7 @@
       <workItem from="1544532479821" duration="3086000" />
       <workItem from="1544586477263" duration="17642000" />
       <workItem from="1544761872173" duration="1701000" />
-      <workItem from="1544766813173" duration="9605000" />
+      <workItem from="1544766813173" duration="9793000" />
     </task>
     <task id="LOCAL-00001" summary="实现接口间掉用">
       <created>1544762566369</created>
@@ -470,14 +443,21 @@
       <option name="project" value="LOCAL" />
       <updated>1544780343625</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="不提交pyc文件">
+      <created>1544780517840</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1544780517840</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="371340000" />
+    <option name="totallyTimeSpent" value="371528000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="789" extended-state="0" />
+    <frame x="56" y="328" width="1440" height="789" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -535,7 +515,8 @@
     <MESSAGE value="实现接口间掉用" />
     <MESSAGE value="去除无用代码" />
     <MESSAGE value="拆分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="拆分代码" />
+    <MESSAGE value="不提交pyc文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="不提交pyc文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -560,7 +541,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/appfront/src/components/AddUser.vue" />
     <entry file="file://$PROJECT_DIR$/myproject/utils/exceptions.py" />
     <entry file="file://$PROJECT_DIR$/appfront/src/components/UpdateCaseSuite.vue" />
     <entry file="file://$PROJECT_DIR$/myproject/urls.py">
@@ -962,6 +942,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appfront/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myapp/runScript/DeleteCases.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -972,10 +959,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appfront/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
