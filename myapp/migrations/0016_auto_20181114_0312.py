@@ -21,7 +21,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='case',
-            field=models.ForeignKey(blank=True, default='', max_length=50, on_delete=django.db.models.deletion.CASCADE, related_name='suite_case_name', to='myapp.Case'),
+            field=models.ForeignKey(blank=True, default='', max_length=50,
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='suite_case_name',
+                                    to='myapp.Case'),
         ),
         migrations.AlterField(
             model_name='case_suite',
@@ -31,7 +34,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='project_name',
-            field=models.ForeignKey(blank=True, default='', on_delete=django.db.models.deletion.CASCADE, related_name='suite_project_name', to='myapp.Ym'),
+            field=models.ForeignKey(blank=True, default='',
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='suite_project_name',
+                                    to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='case_suite',
@@ -41,7 +47,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='yuming',
-            field=models.ForeignKey(blank=True, default='', on_delete=django.db.models.deletion.CASCADE, related_name='suite_yuming', to='myapp.Ym'),
+            field=models.ForeignKey(blank=True, default='',
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='suite_yuming', to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='ym',

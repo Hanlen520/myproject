@@ -10,5 +10,3 @@ class SearchSuite(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = CaseSuites
     filter_backends = (filters.SearchFilter,)
     search_fields = ('suite_name', 'project_name__project_name', 'status')
-
-

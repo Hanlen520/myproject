@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='project_name',
-            field=models.ManyToManyField(blank=True, default='', to='myapp.Ym'),
+            field=models.ManyToManyField(blank=True, default='',
+                                         to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='case_suite',

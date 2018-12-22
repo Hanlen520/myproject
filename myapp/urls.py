@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from rest_framework_jwt.views import obtain_jwt_token
-from myapp.runScript import runCase, runCaseSuite, Login, AddUrls, Register, \
+from myapp.runScript import runCase, runCaseSuite, AddUrls, Register, \
     UrlList, SearchUrl, UpdateUrl, DeleteUrl, DeleteUrls, AddCase, CaseList, \
     UpdateCase, SearchCase, DeleteCase, AddCaseSuite, CaseSuiteList, \
     SearchSuite, UpdateCaseSuite, DeleteCaseSuite, User, DeleteCases, \
@@ -61,7 +61,8 @@ urlpatterns = [
         name="delete_user"),
     url(r'^update_user/(?P<pk>\d+)/$', User.UpdateUser.as_view(),
         name="update_user"),
-    url(r'^reset_pwd/(?P<pk>\d+)/$', User.ResetPwd.as_view(), name="reset_pwd"),
+    url(r'^reset_pwd/(?P<pk>\d+)/$',
+        User.ResetPwd.as_view(), name="reset_pwd"),
     url(r'^delete_urls/$', DeleteUrls.DeleteUrls.as_view(), name='delete_urls'),
     url(r'^delete_cases/$', DeleteCases.DeleteCases.as_view(),
         name='delete_cases'),

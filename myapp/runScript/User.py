@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from myapp.serializers import Cases, CaseSuites, Login1
-from myapp.models import Login, Ym, Case, Case_suite
+from myapp.serializers import Login1
+from myapp.models import Login
 from rest_framework import generics, filters, viewsets, mixins
 from rest_framework.views import APIView
 import logging

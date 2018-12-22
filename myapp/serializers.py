@@ -17,7 +17,8 @@ class AddUrls(serializers.ModelSerializer):
                                              queryset=Ym.objects.filter(
                                                  isdelete=False),
                                              message=("项目名已存在"))],
-                                         error_messages={"blank": "项目名称不能为空"})
+                                         error_messages=(
+                                             {"blank": "项目名称不能为空"}))
     url_name = serializers.CharField(max_length=50,
                                      validators=[UniqueValidator(
                                          queryset=Ym.objects.all().filter(
@@ -50,16 +51,20 @@ class Cases(serializers.ModelSerializer):
                                       error_messages={"blank": "用例名称不能为空"})
     url = serializers.CharField(max_length=100, required=True,
                                 error_messages={"blank": "url不能为空"})
-    case_bz = serializers.CharField(max_length=200)
+    case_bz = serializers.CharField(max_length=200, allow_blank=True)
     request_type = serializers.CharField(max_length=50, required=True,
                                          error_messages={"blank": "请求类型不能为空"})
     request_data = serializers.CharField(max_length=200, required=False,
                                          allow_blank=True)
+    expected_result = serializers.CharField(max_length=500, allow_blank=True)
+    invoking_login = serializers.CharField(max_length=50, required=False,
+                                           allow_blank=True)
 
     class Meta:
         model = Case
         fields = ("case_id", "project_name", "case_name", "url", "case_bz",
-                  "request_type", "request_data")
+                  "request_type", "request_data", "expected_result",
+                  "assert_value", "invoking_login")
 
 
 class Case_list(serializers.ModelSerializer):
@@ -85,8 +90,9 @@ class CaseSuites(serializers.ModelSerializer):
     suite_name = serializers.CharField(max_length=50,
                                        validators=[
                                            UniqueValidator(
-                                               queryset=Case_suite.objects.filter(
-                                                   isdelete=False),
+                                               queryset=
+                                               (Case_suite.objects.filter(
+                                                   isdelete=False)),
                                                message=("套件名已存在"))],
                                        required=True,
                                        error_messages={"blank": "套件名不能为空"})

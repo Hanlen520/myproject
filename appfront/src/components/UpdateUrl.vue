@@ -86,7 +86,7 @@
     methods: {
       getid: function () {
         var id = this.$route.params.id;
-        this.$axios.get('http://127.0.0.1:8000/update_url/' + id).then((res) => {
+        this.$axios.get('update_url/' + id).then((res) => {
           console.log(res.data)
           this.update_list = res.data
         }).catch((error) => {
@@ -95,7 +95,7 @@
       },
       updateurl: function () {
         var id = this.$route.params.id;
-        this.$axios.put('http://127.0.0.1:8000/update_url/' + id, {
+        this.$axios.put('update_url/' + id, {
           project_name: this.update_list.project_name,
           url_name: this.update_list.url_name, bz: this.update_list.bz
         }).then((res) => {

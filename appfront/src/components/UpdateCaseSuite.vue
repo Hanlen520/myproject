@@ -119,7 +119,7 @@
     methods: {
       getid: function () {
         var id = this.$route.params.id;
-        this.$axios.get('http://127.0.0.1:8000/update_case_suite/' + id).then((res) => {
+        this.$axios.get('update_case_suite/' + id).then((res) => {
           console.log(res.data);
           this.update_case_list = res.data
         }).catch((error) => {
@@ -128,13 +128,13 @@
       },
       updateCaseSuite: function () {
         var id = this.$route.params.id;
-        this.$axios.get('http://127.0.0.1:8000/update_case_suite/' + id).then((res) => {
+        this.$axios.get('update_case_suite/' + id).then((res) => {
           console.log(res);
           this.update_case_list = res.data
         }).catch((error) => {
           console.log(error);
         });
-        this.$axios.put('http://127.0.0.1:8000/update_case_suite/' + id, {
+        this.$axios.put('update_case_suite/' + id, {
           project_name: this.update_case_list.project_name,
           yuming: this.update_case_list.yuming,
           bz: this.update_case_list.bz,
@@ -152,13 +152,13 @@
         })
       },
       getUrl: function () {
-        this.$axios.get("http://127.0.0.1:8000/url_list/").then((res) => {
+        this.$axios.get("url_list/").then((res) => {
           console.log(res.data.results);
           this.sites = res.data.results
         })
       },
       getCase: function () {
-        this.$axios.get("http://127.0.0.1:8000/case_list/").then((res) => {
+        this.$axios.get("case_list/").then((res) => {
           console.log(res.data.results);
           this.cases = res.data.results
         })

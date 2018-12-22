@@ -147,7 +147,7 @@
 
       },
       getcase: function () {
-        this.$axios.get("http://127.0.0.1:8000/case_list/").then((res) => {
+        this.$axios.get("case_list/").then((res) => {
           console.log(res);
           this.cases = res.data.results
         }).catch((error) => {

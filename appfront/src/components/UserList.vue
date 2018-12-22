@@ -225,7 +225,7 @@
         console.log(this.pageSize);  //每页下拉显示数据
         let t = (size / 10);
         if (t <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             this.sites = res.data.results;
           })
 
@@ -236,53 +236,53 @@
         this.currentPage = currentPage;
         console.log(this.currentPage); //点击第几页
         if (this.pageSize === 10 && currentPage <= 10) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 10 && currentPage > 10) {
           let t = parseInt(currentPage / 10) + 1;
-          this.$axios.get('http://127.0.0.1:8000/user_list/?page=' + t).then((res) => {
+          this.$axios.get('user_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 20 && currentPage <= 5) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 20 && currentPage > 5) {
           let t = parseInt(currentPage / 5) + 1;
-          this.$axios.get('http://127.0.0.1:8000/user_list/?page=' + t).then((res) => {
+          this.$axios.get('user_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 50 && currentPage <= 2) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 50 && currentPage > 2) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/user_list/?page=' + t).then((res) => {
+          this.$axios.get('user_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 100 && currentPage <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 100 && currentPage > 1) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/user_list/?page=' + t).then((res) => {
+          this.$axios.get('user_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
@@ -290,7 +290,7 @@
       },
       getlist: function () {
         if (this.currentPage === 1) {
-          this.$axios.get('http://127.0.0.1:8000/user_list/').then((res) => {
+          this.$axios.get('user_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
             this.totalNum = res.data.count
@@ -298,7 +298,7 @@
             console.log(error)
           })
         } else {
-          this.$axios.get('http://127.0.0.1:8000/user_list/?page=' + this.currentPage).then((res) => {
+          this.$axios.get('user_list/?page=' + this.currentPage).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
 
@@ -306,7 +306,7 @@
         }
       },
       search: function () {
-        this.$axios.get('http://127.0.0.1:8000/search_user/', {
+        this.$axios.get('search_user/', {
           params: {
             search: this.username,
           }
@@ -322,7 +322,7 @@
         this.$router.push({path: "/update_user/" + row});
       },
       getDelete: function (row) {
-        this.$axios.delete('http://127.0.0.1:8000/delete_user/' + row).then((res) => {
+        this.$axios.delete('delete_user/' + row).then((res) => {
           console.log(res);
           this.dialogVisible = false;
           this.deleteOpen();

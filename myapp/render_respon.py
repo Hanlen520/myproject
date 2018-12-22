@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from collections import OrderedDict
 

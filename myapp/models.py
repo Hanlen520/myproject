@@ -2,10 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.core.exceptions import ValidationError
-from django.core import validators
 from django.contrib.auth.models import AbstractUser
-import hashlib
 from django.contrib.auth.models import User
 
 
@@ -41,10 +38,13 @@ class Case(models.Model):
                                      error_messages={"blank": "项目名称不能为空"})
     request_type = models.CharField(max_length=50, blank=False)
     url = models.CharField(max_length=100, blank=False)
-    case_bz = models.CharField(max_length=200, blank=True)
+    case_bz = models.CharField(max_length=200, blank=True, default='')
     request_data = models.CharField(max_length=200, blank=True)
     isdelete = models.BooleanField(default=False)
+    expected_result = models.CharField(max_length=500, blank=False, default='')
     result = models.CharField(max_length=500, default='', blank=True)
+    assert_value = models.CharField(max_length=50, default='', blank=False)
+    invoking_login = models.CharField(max_length=50, default='', blank=True)
 
     def __str__(self):
         return self.case_name

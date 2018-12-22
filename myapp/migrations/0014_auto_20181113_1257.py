@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='case_suite',
             name='project_name',
-            field=models.ForeignKey(blank=True, default='', on_delete=django.db.models.deletion.CASCADE, to='myapp.Ym'),
+            field=models.ForeignKey(blank=True, default='',
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    to='myapp.Ym'),
         ),
     ]

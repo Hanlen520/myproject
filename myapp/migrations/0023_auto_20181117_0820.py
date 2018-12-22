@@ -21,7 +21,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='case',
-            field=models.ForeignKey(default='', max_length=50, on_delete=django.db.models.deletion.CASCADE, related_name='suite_case_name', to='myapp.Case'),
+            field=models.ForeignKey(default='', max_length=50,
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='suite_case_name',
+                                    to='myapp.Case'),
         ),
         migrations.AlterField(
             model_name='case_suite',
@@ -31,17 +34,27 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case_suite',
             name='project_name',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='suite_project_name', to='myapp.Ym'),
+            field=models.ForeignKey(default='',
+                                    on_delete=django.db.models.deletion.
+                                    CASCADE,
+                                    related_name='suite_project_name',
+                                    to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='case_suite',
             name='suite_name',
-            field=models.CharField(error_messages={'unique': '\u5957\u4ef6\u540d\u79f0\u5df2\u5b58\u5728'}, max_length=50, unique=True),
+            field=models.CharField(error_messages={'unique': '\u5957\u4ef6'
+                                                             '\u540d\u79f0'
+                                                             '\u5df2\u5b58'
+                                                             '\u5728'},
+                                   max_length=50, unique=True),
         ),
         migrations.AlterField(
             model_name='case_suite',
             name='yuming',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='suite_yuming', to='myapp.Ym'),
+            field=models.ForeignKey(default='', on_delete=django.db.models.
+                                    deletion.CASCADE,
+                                    related_name='suite_yuming', to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='ym',

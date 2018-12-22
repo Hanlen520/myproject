@@ -118,15 +118,15 @@
               批量删除
             </el-button>
             <!--<el-dialog-->
-              <!--title="提示"-->
-              <!--:visible.sync="dialogVisible"-->
-              <!--width="30%"-->
-              <!--:modal-append-to-body='false'>-->
-              <!--<span>确定要删除该数据吗？</span>-->
-              <!--<span slot="footer" class="dialog-footer">-->
-    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
-    <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
-  <!--</span>-->
+            <!--title="提示"-->
+            <!--:visible.sync="dialogVisible"-->
+            <!--width="30%"-->
+            <!--:modal-append-to-body='false'>-->
+            <!--<span>确定要删除该数据吗？</span>-->
+            <!--<span slot="footer" class="dialog-footer">-->
+            <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+            <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
+            <!--</span>-->
 
             <!--</el-dialog>-->
             <el-button class="small" size="small" @click="runCases()"
@@ -246,7 +246,7 @@
         console.log(this.pageSize);  //每页下拉显示数据
         let t = (size / 10);
         if (t <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+          this.$axios.get('case_suite_list/').then((res) => {
             this.sites = res.data.results;
           })
 
@@ -257,60 +257,60 @@
         this.currentPage = currentPage;
         console.log(this.currentPage); //点击第几页
         if (this.pageSize === 10 && currentPage <= 10) {
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+          this.$axios.get('case_suite_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 10 && currentPage > 10) {
           let t = parseInt(currentPage / 10) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/?page=' + t).then((res) => {
+          this.$axios.get('case_suite_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 20 && currentPage <= 5) {
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+          this.$axios.get('case_suite_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 20 && currentPage > 5) {
           let t = parseInt(currentPage / 5) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/?page=' + t).then((res) => {
+          this.$axios.get('case_suite_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 50 && currentPage <= 2) {
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+          this.$axios.get('case_suite_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 50 && currentPage > 2) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/?page=' + t).then((res) => {
+          this.$axios.get('case_suite_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 100 && currentPage <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+          this.$axios.get('case_suite_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 100 && currentPage > 1) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_suite_list/?page=' + t).then((res) => {
+          this.$axios.get('case_suite_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
       },
       getlist: function () {
-        this.$axios.get('http://127.0.0.1:8000/case_suite_list/').then((res) => {
+        this.$axios.get('case_suite_list/').then((res) => {
           console.log(res.data.results);
           this.sites = res.data.results;
           this.totalNum = res.data.count
@@ -355,7 +355,8 @@
           console.log(res);
           this.dialogVisible = false;
           this.deleteOpen();
-          this.getlist()
+          this.getlist();
+          this.list1.splice(0, this.list1.length)
         }).catch((error) => {
           console.log(error)
         })
@@ -363,13 +364,16 @@
       run: function (row) {
         this.run_status = true;
         this.$axios.post('run/', {suite_id: row}).then((res) => {
-          if (res.data.results !== '') {
+          if (res.data !== '') {
             this.run_status = false
           }
           console.log(res.data.results);
           this.getlist()
 
         }).catch((error) => {
+          if (error.status !== '') {
+            this.run_status = false
+          }
           console.log(error)
         })
       },
@@ -393,8 +397,11 @@
           this.deleteOpen();
           this.getlist();
           this.list1.splice(0, this.list1.length)
-        }).catch((err) => {
-          console.log(err)
+        }).catch((error) => {
+          if (error.status !== '') {
+            this.run_status = false
+          }
+          console.log(error)
         })
       },
       runCases() {
@@ -411,6 +418,9 @@
           this.list1.splice(0, this.list1.length);
 
         }).catch((err) => {
+          if (err.status !== '') {
+            this.runs_status = false
+          }
           console.log(err)
         })
       },

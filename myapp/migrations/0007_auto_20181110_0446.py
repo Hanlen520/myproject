@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Case',
             fields=[
-                ('case_id', models.AutoField(primary_key=True, serialize=False)),
+                ('case_id', models.AutoField(primary_key=True,
+                                             serialize=False)),
                 ('case_name', models.CharField(max_length=50)),
                 ('request_type', models.CharField(max_length=50)),
                 ('url', models.CharField(max_length=100)),
@@ -29,7 +30,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Case_suite',
             fields=[
-                ('suite_id', models.AutoField(primary_key=True, serialize=False)),
+                ('suite_id', models.AutoField(primary_key=True,
+                                              serialize=False)),
                 ('suite_name', models.CharField(max_length=50)),
                 ('isdelete', models.BooleanField(default=False)),
             ],
@@ -37,7 +39,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Login',
             fields=[
-                ('user_id', models.AutoField(primary_key=True, serialize=False)),
+                ('user_id', models.AutoField(primary_key=True,
+                                             serialize=False)),
                 ('username', models.CharField(max_length=100)),
                 ('password', models.CharField(max_length=100)),
             ],

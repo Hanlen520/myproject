@@ -16,9 +16,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserToken',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('token', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='myapp.Login')),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='myapp.Login')),
             ],
         ),
         migrations.AlterField(
@@ -29,7 +32,14 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case',
             name='project_name',
-            field=models.ForeignKey(default='', error_messages={'blank': '\u9879\u76ee\u540d\u79f0\u4e0d\u80fd\u4e3a\u7a7a'}, on_delete=django.db.models.deletion.CASCADE, related_name='case_project_name', to='myapp.Ym'),
+            field=models.ForeignKey(default='',
+                                    error_messages={'blank':
+                                                        '\u9879\u76ee\u540d'
+                                                        '\u79f0\u4e0d'
+                                                        '\u80fd\u4e3a\u7a7a'},
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='case_project_name',
+                                    to='myapp.Ym'),
         ),
         migrations.AlterField(
             model_name='case_suite',

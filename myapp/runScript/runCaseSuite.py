@@ -4,7 +4,6 @@ import requests
 from rest_framework.views import APIView
 import logging
 from rest_framework.response import Response
-from rest_framework import status
 import re
 from myapp.models import Case, Case_suite
 
@@ -32,7 +31,8 @@ class RunCaseSuites(APIView):
                                   json={"username": "zhengxq1",
                                         "password": "zxq111111"},
                                   headers={
-                                      "Content-Type": "application/json; charset=utf-8"})
+                                      "Content-Type":
+                                          "application/json; charset=utf-8"})
             headers["Authorization"] = "Jwt " + token.json()['token']
             if request_data == '':
                 request_data = {}
@@ -79,7 +79,8 @@ class RunCaseSuites(APIView):
                                   json={"username": "zhengxq1",
                                         "password": "zxq111111"},
                                   headers={
-                                      "Content-Type": "application/json; charset=utf-8"})
+                                      "Content-Type":
+                                          "application/json; charset=utf-8"})
             headers["Authorization"] = "Jwt " + token.json()['token']
             if request_data == '':
                 request_data = {}
@@ -125,7 +126,8 @@ class RunCaseSuites(APIView):
                                   json={"username": "zhengxq1",
                                         "password": "zxq111111"},
                                   headers={
-                                      "Content-Type": "application/json; charset=utf-8"})
+                                      "Content-Type":
+                                          "application/json; charset=utf-8"})
             headers["Authorization"] = "Jwt " + token.json()['token']
             if request_data == '':
                 request_data = {}
@@ -169,7 +171,8 @@ class RunCaseSuites(APIView):
                                   json={"username": "zhengxq1",
                                         "password": "zxq111111"},
                                   headers={
-                                      "Content-Type": "application/json; charset=utf-8"})
+                                      "Content-Type":
+                                          "application/json; charset=utf-8"})
             headers["Authorization"] = "Jwt " + token.json()['token']
             t = requests.delete(url, json=eval(request_data),
                                 headers=headers, verify=False)
@@ -217,7 +220,8 @@ class RunCaseSuites(APIView):
                                       json={"username": "zhengxq1",
                                             "password": "zxq111111"},
                                       headers={
-                                          "Content-Type": "application/json; charset=utf-8"})
+                                          "Content-Type":
+                                              "application/json; charset=utf-8"})
                 headers["Authorization"] = "Jwt " + token.json()['token']
                 # 请求参数未填写情况下赋值空值
                 # if request_data == '':
@@ -266,7 +270,8 @@ class RunCaseSuites(APIView):
                                         new_body]
                                     new_data = new_data.replace(body,
                                                                 '\'' + str(
-                                                                    new_body) + '\'')
+                                                                    new_body) +
+                                                                '\'')
                                 # 查询上一个接口返回的数据，替换url中的参数
 
                                 new_url = url.replace(t1, str(url_pattern))
@@ -279,7 +284,9 @@ class RunCaseSuites(APIView):
                                             suite_id=i).update(
                                             status='成功')
                                         Case.objects.filter(isdelete=False,
-                                                            case_name=data.case.case_name).update(
+                                                            case_name=
+                                                            data.case.case_name
+                                                            ).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -301,10 +308,12 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=
+                                            data.case.case_name).update(
                                             result=t.json())
                                         # return Response(t.json(),
-                                        #                 status=status.HTTP_200_OK,
+                                        #
+                                        #             status=status.HTTP_200_OK,
                                         #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
@@ -323,10 +332,11 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=
+                                            data.case.case_name).update(
                                             result=t.json())
                                         # return Response(t.json(),
-                                        #                 status=status.HTTP_200_OK,
+                                        #             status=status.HTTP_200_OK,
                                         #                 headers=headers)
                                     else:
                                         Case_suite.objects.filter(
@@ -346,7 +356,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update()
+                                            case_name=
+                                            data.case.case_name).update()
                                         # return Response(
                                         #     status=status.HTTP_204_NO_CONTENT,
                                         #     headers=headers)
@@ -376,7 +387,9 @@ class RunCaseSuites(APIView):
                                             suite_id=i).update(
                                             status='成功')
                                         Case.objects.filter(isdelete=False,
-                                                            case_name=data.case.case_name).update(
+                                                            case_name=
+                                                            data.case.case_name
+                                                            ).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -398,7 +411,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=
+                                            data.case.case_name).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -420,7 +434,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=
+                                            data.case.case_name).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -443,7 +458,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update()
+                                            case_name=
+                                            data.case.case_name).update()
                                         # return Response(
                                         #     status=status.HTTP_204_NO_CONTENT,
                                         #     headers=headers)
@@ -465,7 +481,8 @@ class RunCaseSuites(APIView):
                                         new_body]
                                     new_data = new_data.replace(body,
                                                                 '\'' + str(
-                                                                    new_body) + '\'')
+                                                                    new_body) +
+                                                                '\'')
                                 # 查询上一个接口返回的数据，替换url中的参数
                                 if request_type == 'put':
                                     t = requests.put(url,
@@ -476,7 +493,9 @@ class RunCaseSuites(APIView):
                                             suite_id=i).update(
                                             status='成功')
                                         Case.objects.filter(isdelete=False,
-                                                            case_name=data.case.case_name).update(
+                                                            case_name=
+                                                            data.case.case_name
+                                                            ).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -498,7 +517,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=data.case.case_name
+                                        ).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -520,7 +540,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update(
+                                            case_name=data.case.case_name
+                                        ).update(
                                             result=t.json())
                                         # return Response(t.json(),
                                         #                 status=status.HTTP_200_OK,
@@ -543,7 +564,8 @@ class RunCaseSuites(APIView):
                                             status='成功')
                                         Case.objects.filter(
                                             isdelete=False,
-                                            case_name=data.case.case_name).update()
+                                            case_name=data.case.case_name
+                                        ).update()
                                         # return Response(
                                         #     status=status.HTTP_204_NO_CONTENT,
                                         #     headers=headers)

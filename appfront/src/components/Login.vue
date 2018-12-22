@@ -43,7 +43,7 @@
         _this.state = false;
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$axios.post('http://127.0.0.1:8000/api-auth/', _this.ruleForm).then((res) => {
+            this.$axios.post('api-auth/', _this.ruleForm).then((res) => {
               localStorage.clear();
               localStorage.token = res.data.token;
               localStorage.user_id = res.data.user_id;

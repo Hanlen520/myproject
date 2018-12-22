@@ -16,6 +16,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case',
             name='project_name',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='myapp.Ym'),
+            field=models.ForeignKey(default='',
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    to='myapp.Ym'),
         ),
     ]

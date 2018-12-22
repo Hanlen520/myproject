@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='case',
             name='project_name',
-            field=models.ManyToManyField(default='', related_name='tracks', to='myapp.Ym'),
+            field=models.ManyToManyField(default='', related_name='tracks',
+                                         to='myapp.Ym'),
         ),
     ]

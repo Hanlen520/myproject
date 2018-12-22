@@ -116,15 +116,15 @@
                        @click="removeBatch" :loading=delete_status>批量删除
             </el-button>
             <!--<el-dialog-->
-              <!--title="提示"-->
-              <!--:visible.sync="dialogVisible"-->
-              <!--width="30%"-->
-              <!--:modal-append-to-body='false'>-->
-              <!--<span>确定要删除该数据吗？</span>-->
-              <!--<span slot="footer" class="dialog-footer">-->
-    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
-    <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
-  <!--</span>-->
+            <!--title="提示"-->
+            <!--:visible.sync="dialogVisible"-->
+            <!--width="30%"-->
+            <!--:modal-append-to-body='false'>-->
+            <!--<span>确定要删除该数据吗？</span>-->
+            <!--<span slot="footer" class="dialog-footer">-->
+            <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+            <!--<el-button type="primary" @click="removeBatch()">确 定</el-button>-->
+            <!--</span>-->
             <!--</el-dialog>-->
           </el-form>
 
@@ -137,15 +137,21 @@
             </el-table-column>
             <el-table-column prop="case_name" label="用例名">
             </el-table-column>
-            <el-table-column prop="project_name" label="项目名称" width="120">
-            </el-table-column>
+            <!--<el-table-column prop="project_name" label="项目名称" width="120">-->
+            <!--</el-table-column>-->
             <el-table-column prop="url" label="域名地址">
             </el-table-column>
-            <el-table-column prop="request_data" label="请求数据">
+            <el-table-column prop="request_data" label="请求数据"
+                             :show-overflow-tooltip="true">
             </el-table-column>
             <el-table-column prop="request_type" label="请求类型">
             </el-table-column>
+            <el-table-column prop="invoking_login" label="是否调用登陆">
+            </el-table-column>
             <el-table-column prop="case_bz" label="备注">
+            </el-table-column>
+            <el-table-column prop="expected_result" label="预期结果"
+                             :show-overflow-tooltip="true">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -153,11 +159,11 @@
                 <!--&lt;!&ndash;<el-button size="mini" type="danger" @click="getDelete(scope.row.case_id)">删除</el-button>&ndash;&gt;-->
                 <!--<el-button type="danger" @click="dialogVisible = true" size="mini">删除</el-button>-->
                 <el-button @click="getUpdate(scope.row.case_id)" type="button"
-                           style="border: transparent;background-color: transparent;width: 30px">
+                           style="border: transparent;background-color: transparent;width: 20px">
                   <span style="color: #71c7ad;">编辑</span>
                 </el-button>
                 <el-button @click="dialogVisible = true" type="button"
-                           style="border: transparent;background-color: transparent">
+                           style="border: transparent;background-color: transparent;width: 20px">
                   <span style="color: #71c7ad;">删除</span>
                 </el-button>
                 <el-dialog
@@ -233,7 +239,8 @@
         multipleSelection: [],
         list1: [],
         yz: false,
-        delete_status: false
+        delete_status: false,
+        expected_result: ''
 
       }
     },
@@ -248,7 +255,7 @@
         console.log(this.pageSize);  //每页下拉显示数据
         let t = (size / 10);
         if (t <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+          this.$axios.get('case_list/').then((res) => {
             this.sites = res.data.results;
           })
 
@@ -259,60 +266,60 @@
         this.currentPage = currentPage;
         console.log(this.currentPage); //点击第几页
         if (this.pageSize === 10 && currentPage <= 10) {
-          this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+          this.$axios.get('case_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 10 && currentPage > 10) {
           let t = parseInt(currentPage / 10) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_list/?page=' + t).then((res) => {
+          this.$axios.get('case_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 20 && currentPage <= 5) {
-          this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+          this.$axios.get('case_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 20 && currentPage > 5) {
           let t = parseInt(currentPage / 5) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_list/?page=' + t).then((res) => {
+          this.$axios.get('case_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 50 && currentPage <= 2) {
-          this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+          this.$axios.get('case_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 50 && currentPage > 2) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_list/?page=' + t).then((res) => {
+          this.$axios.get('case_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
         if (this.pageSize === 100 && currentPage <= 1) {
-          this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+          this.$axios.get('case_list/').then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           })
         }
         if (this.pageSize === 100 && currentPage > 1) {
           let t = parseInt(currentPage / 2) + 1;
-          this.$axios.get('http://127.0.0.1:8000/case_list/?page=' + t).then((res) => {
+          this.$axios.get('case_list/?page=' + t).then((res) => {
             console.log(res.data.results);
             this.sites = res.data.results;
           });
         }
       },
       getlist1: function () {
-        this.$axios.get('http://127.0.0.1:8000/case_list/').then((res) => {
+        this.$axios.get('case_list/').then((res) => {
           console.log(res.data.results);
           this.sites = res.data.results;
           this.totalNum = res.data.count
@@ -338,7 +345,7 @@
           }
         }
 
-        this.$axios.get('http://127.0.0.1:8000/search_case/', {
+        this.$axios.get('search_case/', {
           params: this.param
         }).then((res) => {
           console.log(res.data.results);
@@ -354,7 +361,7 @@
       }
       ,
       getDelete: function (row) {
-        this.$axios.delete('http://127.0.0.1:8000/delete_case/' + row).then((res) => {
+        this.$axios.delete('delete_case/' + row).then((res) => {
           console.log(res);
           this.dialogVisible = false;
           this.deleteOpen();

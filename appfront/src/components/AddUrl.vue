@@ -82,7 +82,7 @@
     methods: {
       addurls: function () {
 
-        this.$axios.post('http://127.0.0.1:8000/add_url/', {
+        this.$axios.post('add_url/', {
           project_name: this.project_name,
           url_name: this.url_name,
           bz: this.bz
