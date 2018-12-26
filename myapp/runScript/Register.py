@@ -6,13 +6,15 @@ from rest_framework import generics
 import logging
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 # Create your views here.
 
 
 # 用户注册
 class Register1(generics.ListCreateAPIView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     serializer_class = Login1
     queryset = Login.objects.filter(isdelete=False)
 

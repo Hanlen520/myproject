@@ -7,10 +7,13 @@ from rest_framework.views import APIView
 import logging
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 
 # 搜索用户名、邮箱
 class SearchUser(mixins.ListModelMixin, viewsets.GenericViewSet):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     queryset = Login.objects.filter(isdelete=False)
     serializer_class = Login1
     filter_backends = (filters.SearchFilter,)

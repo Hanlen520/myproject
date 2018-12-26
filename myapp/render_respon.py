@@ -12,7 +12,8 @@ class LargeResultsSetPagination(LimitOffsetPagination):
     def get_paginated_response(self, results):
         code = 0
         msg = ''
-        if Response.status_code == 200:
+        if Response.status_code == 200 or Response.status_code == 201 or (
+                Response.status_code == 204):
             code = 200
             msg = 'success'
         if not results:

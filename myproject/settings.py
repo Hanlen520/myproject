@@ -165,6 +165,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'myapp.render_respon.LargeResultsSetPagination',
     # 'EXCEPTION_HANDLER': 'utils.exceptions.custom_exception_handler',

@@ -5,10 +5,12 @@ from myapp.models import Case_suite
 from rest_framework.views import APIView
 import logging
 from rest_framework.response import Response
-
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 # 批量删除测试套件
 class DeleteCaseSuites(APIView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     queryset = Case_suite.objects.all().filter(isdelete=False)
     serializer_class = CaseSuites
 

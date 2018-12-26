@@ -5,9 +5,12 @@ from myapp.models import Ym
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import logging
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 
 class DeleteUrls(APIView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     queryset = Ym.objects.all().filter(isdelete=False)
     serializer_class = AddUrls
 

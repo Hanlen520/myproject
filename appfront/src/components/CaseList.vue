@@ -366,7 +366,6 @@
           this.dialogVisible = false;
           this.deleteOpen();
           this.getlist1()
-          this.list1.splice(0, this.list1.length)
         }).catch((error) => {
           console.log(error)
         })
